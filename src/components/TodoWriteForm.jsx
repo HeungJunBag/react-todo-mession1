@@ -6,6 +6,12 @@ function TodoWriteForm() {
     const handleOnSubmit = (e) => {
         e.preventDefault()
         const form = e.target
+
+        if (form.todo.value.length == 0) {
+            alert('할일을 입력해주세요.')
+            return
+        }
+
         addTodo(form.todo.value)
     }
 
