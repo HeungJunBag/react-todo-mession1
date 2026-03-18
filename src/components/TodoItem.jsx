@@ -1,4 +1,8 @@
-function TodoItem({ todo, removeTodo, toggleTodo }) {
+import { useTodos } from '../context/TodoContext'
+
+function TodoItem({ todo }) {
+    const { removeTodo, toggleTodo } = useTodos()
+
     return (
         <li key={todo.id}>
             <input
