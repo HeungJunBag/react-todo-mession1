@@ -32,9 +32,14 @@ export function TodoProvider({ children }) {
         setTodos(updateTodos)
     }
 
+    const toggleAllTodos = (isAllChecked) => {
+        const updateTodos = todos.map((todo) => ({ ...todo, checked: isAllChecked }))
+        setTodos(updateTodos)
+    }
+
     const activeCount = todos.filter((todo) => !todo.checked).length
 
-    const value = { todos, addTodo, removeTodo, toggleTodo, activeCount }
+    const value = { todos, addTodo, removeTodo, toggleTodo, activeCount, toggleAllTodos }
 
     return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>
 }
