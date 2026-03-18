@@ -1,12 +1,15 @@
 import { useState } from 'react'
 
 function App() {
-    const [todos, setTodos] = useState(['공부하기', '코딩하기', '운동하기'])
-
+    const [todos, setTodos] = useState([
+        { text: '공부하기', checked: false },
+        { text: '코딩하기', checked: false },
+        { text: '운동하기', checked: false },
+    ])
     const handleOnSubmit = (e) => {
         e.preventDefault()
         const form = e.target
-        setTodos([form.todo.value, ...todos])
+        setTodos([{ text: form.todo.value, checked: false }, ...todos])
     }
 
     const removeTodo = (seletedIndex) => {
@@ -23,8 +26,8 @@ function App() {
             <ul>
                 {todos.map((todo, i) => (
                     <li key={i}>
-                        {todo}
-                        <button onClick={() => removeTodo(i)}>X</button>
+                        <input type="checkbox" />
+                        {i} / {todo.text} <button onClick={() => removeTodo(i)}>X</button>
                     </li>
                 ))}
             </ul>
