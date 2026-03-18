@@ -20,6 +20,11 @@ function App() {
         setTodos(filterTodos)
     }
 
+    const toggleTodo = (seletedId) => {
+        const updateTodos = todos.map((todo) => (todo.id == seletedId ? { ...todo, checked: !todo.checked } : todo))
+        setTodos(updateTodos)
+    }
+
     return (
         <>
             <form onSubmit={handleOnSubmit}>
@@ -29,8 +34,13 @@ function App() {
             <ul>
                 {todos.map((todo) => (
                     <li key={todo.id}>
-                        <input type="checkbox" />
-                        {todo.id} / {todo.text}
+                        <input
+                            type="checkbox"
+                            onChange={() => {
+                                toggleTodo(todo.id)
+                            }}
+                        />
+                        {JSON.stringify(todo.checked)} / {todo.id} / {todo.text}
                         <button onClick={() => removeTodo(todo.id)}>X</button>
                     </li>
                 ))}
